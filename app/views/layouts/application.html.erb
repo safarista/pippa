@@ -1,0 +1,124 @@
+<!DOCTYPE html>  
+
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="fragment" content="!">
+  <!--[if IE]><meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+  <%= csrf_meta_tag %>
+  <title><%= title %></title>
+  <meta name="author" content="<%= meta_author %>">
+  <meta name="description" content="<%= meta_description %>">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= favicon_link_tag %>
+  <%= favicon_link_tag 'apple-touch-icon.png', :rel => 'apple-touch-icon', :type => 'image/png' %>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag  'modernizr-1.6' %>
+	<%= auto_discovery_link_tag :atom, jobs_path(:atom) %>
+
+</head>
+<body>
+	<div id="user_nav">
+
+		<p><%= link_to "WebdesignPiper", root_url, :title => "Web Design Piper" %>
+		<% if account_signed_in? %>
+			<span  class="float_rt">
+				<% if current_account.profile %>
+					Welcome <%= link_to "#{current_account.profile.name}", profile_path(current_account.profile) %> &ndash;
+					<%= link_to "Edit", edit_profile_path(current_account.profile) %> | 
+					<%= link_to "Images", profile_photos_path(current_account.profile) %>
+				<% else %>
+					<%= link_to "Update Profile", new_profile_path %>
+				<% end %>
+	 		 | <%= link_to "Settings", edit_account_registration_path %> |
+			<%= link_to "Sign out", destroy_account_session_path %>
+			</span>
+		<% else %>
+			<span  class="float_rt"><%= link_to "Sign in", new_account_session_path %> Or <%= link_to "Sign up", new_account_registration_path %></span>
+		<% end %>
+		</p>
+	</div><!-- end user_nav -->
+	
+	<div id="container">
+	<header>
+		<h1>
+			<%= link_to "All jobs", jobs_path, :title => "view all listed jobs" %> | 
+			<%= link_to "Web Designers", profiles_path, :title => "view all the designers" %> | 
+			<%= link_to "Design Companies", businesses_path, :title => "view all the design companies" %>
+			<%= link_to raw("Post a Job &pound;40 for 30 Days"), new_job_path, 
+															:class=>"float_rt", 
+															:title => "post a job for 40 pounds for 30 days" %>
+		</h1>
+
+	</header>
+	
+	<% flash.each do |name, msg| %>
+		<%= content_tag :div, msg, :id => "#{name}" %>
+	<% end %>
+	
+	<nav>
+    	<p>
+    		<a href="">Find Near Me</a>
+    		 | 
+    		<a href="">Find By City</a>
+    		 | 
+    		<a href="">Find By Budget</a>
+    	</p>
+    </nav>
+
+    <div id="main">
+
+
+	
+	<%= yield %>
+	
+
+
+  </div><!-- end #main -->
+  
+  <footer>
+		<p>
+			<a href="">Find or Post a Job</a> | 
+			<a href="">List or Find a Designer</a> | 
+			<a href="">Find or List a Design Company</a> | 
+			<a href="">Contact Us</a>
+		</p>
+		<p><a href="">Terms of Service</a></p>
+		<p>WebPiper&copy; is a service of <a href="">21Waves</a> | Happily hosted at <a href="">Brightbox</a></p>
+  </footer>
+</div> <!-- end of #container -->
+
+
+<!-- scripts concatenated and minified via ant build script-->
+<%= javascript_include_tag :defaults, 'DD_belatedPNG', :recursive => true %>
+<!-- end concatenated and minified scripts-->
+
+
+
+<!--[if lt IE 7 ]>
+  <%= javascript_include_tag "DD_belatedPNG" %>
+  <script> DD_belatedPNG.fix('img, .png_bg'); </script>
+<![endif]-->
+
+
+<!-- change the UA-XXXXX-X to be your site's ID -->
+<script>
+
+
+ // var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']];
+ // (function(d, t) {
+ //  var g = d.createElement(t),
+ //      s = d.getElementsByTagName(t)[0];
+ //  g.async = true;
+ //  g.src = ('https:' == location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+ //  s.parentNode.insertBefore(g, s);
+ // })(document, 'script');
+</script>
+
+</body>
+</html>

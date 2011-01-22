@@ -1,0 +1,80 @@
+<%= form_for @business, :business, :html => {:multipart => true} do |f| %>
+  <% if @business.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@business.errors.count, "error") %> prohibited this business from being saved:</h2>
+
+      <ul>
+      <% @business.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+		
+      </ul>
+    </div>
+  <% end %>
+
+
+	<p>
+		<%= f.label :name %><br>
+		<%= f.text_field :name, :required =>true %>
+	</p>
+	<p>
+		<%= f.label :logo, "upload your Logo" %><br>
+		<%= f.file_field :logo, :required =>true %>
+	</p>
+	<p>
+		<%= f.label :budget, "Whats your budget in USD" %><br>
+		<%= f.number_field :budget, :required =>true %>
+	</p>
+	<p>
+    	<%= f.label :street %><br>
+		<%= f.text_field :street, :required =>true %>
+	</p>
+	<p>
+		<%= f.label :locality %><br>
+		<%= f.text_field :locality, :required =>true %>
+	</p>
+	<p>
+		<%= f.label :city %><br>
+		<%= f.text_field :city, :required =>true %>
+	</p>
+	<p>
+		<%= f.label :region %><br>
+		<%= f.text_field :region, :required =>true %>
+	</p>
+	<p>
+		<%= f.label :postcode %><br>
+		<%= f.text_field :postcode, :required =>true %>
+	</p>
+	<p>
+		<%= f.label :country %><br>
+		<%= f.text_field :country, :required =>true %>
+	</p>
+	<p>
+		<%= f.label :latitude %><br>
+		<%= f.text_field :latitude, :required =>true %>
+	</p>
+	<p>
+		<%= f.label :longitude %><br>
+		<%= f.text_field :longitude, :required =>true %>
+	</p>
+	<p>
+		<%= f.label :phone %><br>
+		<%= f.text_field :phone, :required =>true %>
+	</p>
+	<p>
+		<%= f.label :website %><br>
+		<%= f.text_field :website, :required =>true %>
+	</p>
+	<p>
+		<%= f.label :email %><br>
+		<%= f.text_field :email, :required =>true %>
+	</p>
+	<p>
+		<%= f.label :description %><br>
+		<%= f.text_area :description, :required =>true %>
+	</p>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

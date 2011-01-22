@@ -1,0 +1,9 @@
+<div  id="all_lists">
+<% @profiles.each do |profile| %>
+
+	<figure>
+		<%= link_to (image_tag profile.avatar.url(:thumb), :size=>"137x272", :alt => "#{profile.name} a #{profile.title}"), profile %>
+		<figcaption itemprop="nickname"><%= profile.name %></figcaption>
+	</figure>
+<% end %>
+</div><!-- end #all_lists -->

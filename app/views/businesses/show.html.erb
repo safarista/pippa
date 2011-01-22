@@ -1,0 +1,93 @@
+<div  id="item_info"  class="clearfix"  itemscope itemtype="http://data-vocabulary.org/Organization">
+	<h3 >
+		<span itemprop="name"><%= @business.name %></span>
+		<span  class="float_rt"><%= link_to( 'Edit', edit_business_path(@business)) if account_signed_in? && (current_account.id == @business.account.id)%> </span>
+	</h3>
+	<%= image_tag @business.logo.url(:medium), :itemprop=>"photo", :class => "float_rt" %>
+	<span itemprop="address" itemscope itemtype="http://data-vocabulary.org/address" >
+		<span itemprop="street-address" ><%= @business.street %>, </span>
+		<span itemprop="locality" ><%= @business.locality %></span><br >
+		<span itemprop="city" ><%= @business.city %>,</span> 
+		<span itemprop="region" ><%= @business.region %></span>
+		<span itemprop="post-code" ><%= @business.postcode %>, </span>
+		<span itemprop="country" ><%= @business.country %></span>
+	</span>
+	<p>
+		Tel:<span itemprop="tel"><%= @business.phone %> </span>
+		(Mobile):<span itemprop="tel">07706 000000</span>
+	</p>
+	<p  class="a_margy">
+		<strong>Budget:</strong><%= number_to_currency @business.budget %>
+	</p>
+	<p class="a_margy">Website: <%= link_to @business.website, "#{@business.website}", :itemprop=>"url", :target=>"_blank" %></p>
+	<p class="a_margy">
+		<span>
+			<a href="http://google.co.uk/">Map Directions </a>
+		</span> | 
+		<span><a href="#"> Owner: Naim Jakson</a></span>
+	</p>
+	
+	<span itemprop="geo" itemscope itemtype="http://emmaslist.org/Geo">
+		<meta itemprop="latitude" content="<%= @business.latitude %>" />
+		<meta itemprop="longitude" content="<%= @business.longitude %>" />
+	</span>
+	
+	<p class="a_margy" itemprop="review" itemscope itemtype="http://data-vocabulary.org/Review-aggregate">
+		<strong>Overall rated:</strong> 
+		<span itemprop="rating"> 4.4 ★</span> stars, based on 
+		<span itemprop="count">89</span> reviews
+	</p>
+	
+	<div class="a_margy" >
+		<h2>Categories:</h2>
+		<span>Baby photography &bull; </span>
+		<span>Baby photography &bull; </span>
+		<span>Baby photography &bull; </span>
+		<span>Baby photography &bull; </span>
+		<span>Baby photography &bull; </span>
+		<span>Baby photography &bull; </span>
+	</div>
+</div>
+
+<details class="a_margy">
+	<summary><strong class="headings">Summary of what our company is about:</strong></summary>
+	
+	<%= simple_format("#{@business.description}", html_options = {}) %>	
+	
+</details>
+
+<ul  class="tabs">
+	<li><a href="#!portfolio">Portfolio</a></li>
+	<li><a href="#!reviews">Reviews</a></li>
+</ul>
+
+<div class="panes">
+
+<div  id="sortfolio">
+	<p>WTF</p>
+</div><!-- end #sortfolio -->
+
+<div  id="reviews">
+	<article itemscope  itemtype="http://data-vocabulary.org/Review" >
+		<meta itemprop="itemreviewed" content="21pictures photography studio" >
+		<h1 itemprop="summary" >Family photo shoot </h1>
+		<ul>
+			<li>Value for money: <span itemprop="rating" >4</span> ★★★★ stars out of 5</li>
+			<li>Level of Service: <span itemprop="rating" >5</span> ★★★★★ stars out of 5</li>
+			<li>Product Quality: <span itemprop="rating" >2</span> ★★★★ stars out of 5</li>
+			<li>Response time: <span itemprop="rating" >3</span> ★★★ stars out of 5</li>
+		</ul>
+		<p itemprop="descrption" >We had a family photo done in there studio in Lincoln. The photographer was great with the kids and we got some great pictures. Didn't cost as much as we had expected to boot. 
+		</p>
+		<span class="reviewer">
+		<span itemprop="location" >Lincoln UK, </span>
+		<span itemprop ="reviewer"> HM Queen Elizabeth Windsor</span>
+		, reviewed on<time itemprop="dtreviewed" datetime="08-09-2010" > 8/9/2010</time>
+		</span>
+	</article>
+	
+	
+</div><!-- end #reviews -->
+</div><!-- end .panes -->
+
+</div><!--end #item_info -->

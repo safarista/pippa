@@ -1,0 +1,51 @@
+
+
+<section  class="preview_container clearfix">
+	<hgroup>
+		<h2>
+			<%= @job.job_title %>
+			<br>
+			<span  class="date">Posted: <%= time_ago_in_words @job.created_at %> ago</span>
+		</h2>
+		
+		<h3>
+			<%= @job.company_name %>
+			<br>
+			<span  class="city">Location: <%= @job.job_location %></span>
+			<br>
+			<span  class="url"><%= link_to "#{@job.company_url}", "http://#{strip_links(@job.company_url)}/" %></span>
+		</h3>
+		<%= image_tag @job.company_logo.url(:normal), :class => "company_logo float_rt"%>
+	</hgroup>
+	
+	
+</section><!--.preview_container-->
+
+<aside  class="float_rt">
+	<ul  class="share">
+		<li>
+			<%= image_tag "email.png" %> &nbsp;<%= mail_to	"#{@job.company_email}",
+															"Tell a Friend",
+															:encode => "hex",
+			 												:subject => "#{@job.job_title} at #{@job.company_name}" %>
+			
+		</li>
+		<li>
+			<%= image_tag "facebook.png" %> &nbsp;<%= link_to "Share: Facebook" ,"http://www.facebook.com/" %>
+		</li>
+		<li>
+			<%= image_tag "twitter.png" %> &nbsp;<%= link_to "Tweet this job", "http://www.twitter.com/" %>
+		</li>
+	</ul>
+</aside>
+<section  class="job_description">
+	<%= kramdown (@job.job_description) %>
+</section>
+
+<section  class="applying">
+	<h2>Think this job's for you? Apply for it.</h2>
+	<p><%= @job.company_apply_to %></p>
+	<br>
+	<p  class="hint">We would like to ask agencies not to post jobs here. No seriuosly, please contact us.</p>
+	
+</section>

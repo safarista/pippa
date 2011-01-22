@@ -1,0 +1,91 @@
+
+<div   id="profile" class="clearfix" itemscope itemtype="http://data-vocabulary.org/Person" >
+	<div id="imog" >
+		<figure>
+			<%= image_tag @profile.avatar.url(:large),	:size=>"300x600", 
+														:itemprop =>"photo", 
+														:alt => "#{@profile.name} a #{@profile.title}" %>
+			<figcaption itemprop="nickname" class="a_margy"><%= @profile.nickname %></figcaption>
+		</figure>
+	</div>
+
+	<section id="details">
+		<h1 itemprop="name"><%= @profile.name %></h1>
+		<p itemprop="title"><%= @profile.title %></p>
+		<p itemprop="location" itemscope itemtype="http://data-vocabulary.org/Address" >
+			<%=raw "<span itemprop='street-address'> #{h @profile.street},</span>"%>
+			<span  ><%= @profile.locality %></span>
+			<span itemprop="city" ><%= @profile.city %></span><br />
+			<span itemprop="region" ><%= @profile.region %></span>,
+			<span itemprop="post-code" ><%= @profile.postcode %></span><br />
+			<span itemprop="country" ><%= @profile.country %></span><br />Tel:
+			<span itemprop="tel" ><%= @profile.phone %></span>
+			<span itemprop="geo" itemscope itemtype="http://data-vocabulary.org/Geo" >
+				<meta itemprop="latitude" content="<%= @profile.latitude %>" />
+				<meta itemprop="longitude" content="<%= @profile.longitude %>" />
+			</span>
+		</p>
+		<h3 class="a_margy headings">My digital footprint 
+			<span class="float_rt">
+				<%= mail_to "#{@profile.email}", "Hire Me",	:encode => "hex", 
+															:subject => "We are hiring VIA FreelancePiper"  %>
+			</span>
+		</h3>
+		<p>
+			<%= link_to "My Website", "#{@profile.website}",:itemprop => "url", 
+															:target => "_blank" %>
+		</p>
+
+		<div>
+		
+			<h3 class="a_margy headings">My Friendships</h3>
+				<ul>
+					<li>
+						<%= image_tag "rails.png", :size => "35x35" %>
+						<%= image_tag "rails.png", :size => "35x35" %>
+						<%= image_tag "rails.png", :size => "35x35" %>
+						<%= image_tag "rails.png", :size => "35x35" %>
+						<%= image_tag "rails.png", :size => "35x35" %>
+						<%= image_tag "rails.png", :size => "35x35" %>
+						<%= image_tag "rails.png", :size => "35x35" %>
+						<%= image_tag "rails.png", :size => "35x35" %>
+						<%= image_tag "rails.png", :size => "35x35" %>
+						<%= image_tag "rails.png", :size => "35x35" %>
+						<%= image_tag "rails.png", :size => "35x35" %>
+						
+					</li>
+				</ul>
+		
+			<h3 class="a_margy headings">My Affiliations</h3>
+			<dl>
+				<dt itemprop="affiliation">Safarista Design</dt>
+				<dd itemprop="role"><%= @profile.position %></dd>
+				<dd itemprop="summary"><%= simple_format @profile.summary %></dd>
+			</dl>
+		</div>
+		
+		<article>
+			<h1 class="a_margy headings">Below is a portfolio of my contributions and scratches on the WWW</h1>
+			<%= simple_format @profile.scratch %>
+			
+		</article>
+	</section>
+	
+	<div id="portfolio"  class="clearfix">
+		<h2  class="a_margy headings">Bellow is some examples of my work. Enjoy.</h2>
+		
+		<% @profile.photos.each do |photo| %>
+		<figure>
+			<%= image_tag photo.screenshot.url(:large), :alt =>"#{photo.summary}", :size => "900x630" %>
+				<figcaption>
+					<h2><%= link_to "#{photo.title}", photo.url, :target => "_blank", 
+																 :title =>"#{photo.title}" %>
+					</h2>
+					<p><%= simple_format photo.summary %></p>
+				</figcaption>
+		</figure>
+		<% end %>
+	</div><!-- end #portfolio -->
+</div>
+
+

@@ -1,0 +1,60 @@
+<%= form_for @job, :job, :html => { :multipart => true } do |f| -%>
+  <% if @job.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@job.errors.count, "error") %> prohibited your job from being saved.</h2>
+			<ol>
+			<%= @job.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+			</ol>
+	</div>
+	<% end %>
+
+	<p>
+	<%= f.label :job_title %><br>
+	<%= f.text_field :job_title %>
+	</p>
+	
+	<p>
+	<% Category.all.each do |category| %>
+	<%= f.radio_button :category_id, category.id  %> <label><%= category.name.titleize %></label>
+	<% end %>
+	</p>
+	
+	<p>
+	<%= f.label :job_location, "location" %><br>
+	<%= f.text_field :job_location %>
+	</p>
+	
+	<p>
+	<%= f.label :job_description %><br>
+	<%= f.text_area :job_description %>
+	</p>
+	
+	<p>
+	<%= f.label :company_apply_to, "apply to" %><br>
+	<%= f.text_area :company_apply_to %>
+	</p>
+	
+	<p>
+	<%= f.label :company_name %><br>
+	<%= f.text_field :company_name %>
+	</p>
+	
+	<p>
+	<%= f.label :company_email %><br>
+	<%= f.text_field :company_email %>
+	</p>
+	
+	<p>
+	<%= f.label :company_url, "Company website" %><br>
+	<%= f.text_field :company_url %>
+	</p>
+	
+	<p>
+	<%= f.label :company_logo %><br>
+	<%= f.file_field :company_logo %>
+	</p>
+	
+	<p><%= f.submit %></p>
+<% end %>

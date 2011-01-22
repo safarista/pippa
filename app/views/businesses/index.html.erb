@@ -1,0 +1,21 @@
+<!--<div  id="profile"> -->
+	<h2>Your search results are in <span  class="float_rt"><%= link_to 'List A New Business', new_business_path %></span></h2>
+		<ol   class="search_results">
+		<% @businesses.each do |business| %>
+		    <li>
+				<span  class="float_rt">
+					<%= image_tag business.logo.url(:small) %>
+				</span>
+				<span class="search_listing">
+				<%= link_to (business.name), business %><br>
+				<%= business.street %>
+				<%= business.locality %><br>
+				<%= business.city %>
+				<%= business.region %>,
+				<%= business.postcode %>
+				<%= business.country %>
+				</span>
+			</li>
+		<% end %>
+	</ol>
+<!--</div>-->

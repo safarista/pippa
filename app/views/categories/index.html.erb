@@ -1,0 +1,23 @@
+<ul>
+	<% @categories.each do |category| %>
+	<li>
+		<span><%= link_to 'Delete', category, :confirm => "Are you sure?", :method => :delete %></span>
+		<span><%= category.name %></span><br>
+		<span><%= category.description %></span>
+	</li>
+	<% end %>	
+</ul>
+
+<%= form_for :category, @category do |f| %>
+	<p>
+		<%= f.label :name, "Name" %><br>
+		<%= f.text_field :name %>
+	</p>
+	
+	<p>
+		<%= f.label :description, "Name" %><br>
+		<%= f.text_field :description %>
+	</p>
+	
+	<p><%= f.submit %></p>
+<% end %>

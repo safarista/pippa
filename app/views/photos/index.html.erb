@@ -1,0 +1,8 @@
+<h1><%= link_to "Add a new image", new_profile_photo_path %></h1>
+
+<% @photos.each do |photo| %>
+	<p><%= image_tag photo.screenshot.url(:large) %></p>
+	<p><%= photo.title %></p>
+	<p><%= photo.url %></p>
+	<p><%= photo.summary %></p>
+<% end %>

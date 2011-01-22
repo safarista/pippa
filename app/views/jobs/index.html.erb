@@ -1,0 +1,20 @@
+<section  class="jobs">
+
+<h2><span  class="float_rt"><%= link_to 'Rss Feed', jobs_url(:atom) %></span></h2>
+
+<ul>
+	<% @jobs.each do |job| %>
+	
+	<%= link_to raw("
+						<li>
+							<span  class=\"new\"> New</span>
+							<span  class=\"location\">#{h job.job_location }</span>
+							<span  class=\"title\">#{h job.job_title }</span> <br>
+							<span  class=\"name\">#{h job.company_name }</span>
+							<span  class=\"date float_rt\">#{h job.created_at.strftime('%b %d') }</span>
+						</li>
+					"), job %>
+	
+	<% end %>
+</ul>
+</section>
