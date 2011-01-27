@@ -7,7 +7,7 @@
 			<br>
 			<span  class="date">Posted: <%= time_ago_in_words @job.created_at %> ago</span>
 		</h2>
-		
+		<%= image_tag @job.company_logo.url(:normal), :class => "company_logo float_rt"%>
 		<h3>
 			<%= @job.company_name %>
 			<br>
@@ -15,7 +15,7 @@
 			<br>
 			<span  class="url"><%= link_to "#{@job.company_url}", "http://#{strip_links(@job.company_url)}/" %></span>
 		</h3>
-		<%= image_tag @job.company_logo.url(:normal), :class => "company_logo float_rt"%>
+		
 	</hgroup>
 	
 	

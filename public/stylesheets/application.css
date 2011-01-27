@@ -265,10 +265,11 @@ section.jobs ul li a {
 }
 
 section h1{font-size:22px;padding:15px 0 0;}
-.preview_container hgroup{float:left;}
+.preview_container hgroup{float:left;width:100%;}
 .preview_container hgroup h2{font-size:22px; padding:15px 0;}
 .preview_container hgroup h2 span.date{font-size:11px;}
-.preview_container hgroup h3 {font-size:14px;width:650px;float:left;}
+.preview_container hgroup h3 
+.preview_container hgroup .company_logo{clear:both;}
 .preview_container hgroup h3 span.url{font-weight:normal;}
 aside{border-top:1px solid #e8e8e8;padding:30px 0;}
 aside ul.share{background-color:#f5fafb;}
