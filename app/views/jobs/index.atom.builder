@@ -1,5 +1,5 @@
 atom_feed do |feed|
-  feed.title("RailsPiper Ruby on Rails jobs board")
+  feed.title("RailsPiper jobs board for Ruby on Rails developers and companies")
   feed.updated(@jobs.first.created_at)
   
   @jobs.each do |job|
